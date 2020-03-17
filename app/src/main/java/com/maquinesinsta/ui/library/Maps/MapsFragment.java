@@ -1,4 +1,4 @@
-package com.maquinesinsta.ui.library.library;
+package com.maquinesinsta.ui.library.Maps;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.maquinesinsta.R;
 
-public class LibraryFragment extends Fragment {
+public class MapsFragment extends Fragment {
 
-    private LibraryViewModel libraryViewModel;
+    private MapsViewModel mapsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        libraryViewModel =
-                ViewModelProviders.of(this).get(LibraryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_library, container, false);
+        mapsViewModel =
+                ViewModelProviders.of(this).get(MapsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_maps, container, false);
         final TextView textView = root.findViewById(R.id.text_library);
-        libraryViewModel.getText().observe(this, new Observer<String>() {
+        mapsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,4 +1,4 @@
-package com.maquinesinsta.ui.dashboard;
+package com.maquinesinsta.ui.Zonas;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.maquinesinsta.R;
 
-public class DashboardFragment extends Fragment {
+public class ZonasFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private ZonasViewModel zonasViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(this, new Observer<String>() {
+        zonasViewModel =
+                ViewModelProviders.of(this).get(ZonasViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_zonas, container, false);
+        final TextView textView = root.findViewById(R.id.text_notification);
+        zonasViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

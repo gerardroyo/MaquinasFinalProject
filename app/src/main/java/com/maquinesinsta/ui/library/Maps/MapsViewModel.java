@@ -1,16 +1,16 @@
-package com.maquinesinsta.ui.dashboard;
+package com.maquinesinsta.ui.library.Maps;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class MapsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public MapsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is MAPS fragment");
     }
 
     public LiveData<String> getText() {

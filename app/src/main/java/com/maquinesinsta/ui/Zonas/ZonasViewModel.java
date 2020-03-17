@@ -1,16 +1,16 @@
-package com.maquinesinsta.ui.home;
+package com.maquinesinsta.ui.Zonas;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class ZonasViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public ZonasViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is ZONAS fragment");
     }
 
     public LiveData<String> getText() {

@@ -3,28 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_maquinas">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.maquinesinsta.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_maquinas"
+        android:name="com.maquinesinsta.ui.Maquinas.MaquinasFragment"
+        android:label="@string/title_maquinas"
+        tools:layout="@layout/fragment_maquinas" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.maquinesinsta.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_tmaquinas"
+        android:name="com.maquinesinsta.ui.TiposMaquinas.TMaquinasFragment"
+        android:label="@string/title_tmaquinas"
+        tools:layout="@layout/fragment_tmaquinas" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.maquinesinsta.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_zonas"
+        android:name="com.maquinesinsta.ui.Zonas.ZonasFragment"
+        android:label="@string/title_zonas"
+        tools:layout="@layout/fragment_zonas" />
     <fragment
-        android:id="@+id/navigation_library"
-        android:name="com.maquinesinsta.ui.library.library.LibraryFragment"
-        android:label="@string/title_library"
-        tools:layout="@layout/fragment_library" />
+        android:id="@+id/navigation_maps"
+        android:name="com.maquinesinsta.ui.library.Maps.MapsFragment"
+        android:label="@string/title_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
