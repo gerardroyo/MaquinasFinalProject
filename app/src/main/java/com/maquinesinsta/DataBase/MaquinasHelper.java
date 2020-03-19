@@ -30,7 +30,8 @@ public class MaquinasHelper extends SQLiteOpenHelper{
 
     private String CREATE_ZONAS =
             "CREATE TABLE zonas ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "nombre TEXT NOT NULL)";
+                    "nombre TEXT NOT NULL," +
+                    "color TEXT NOT NULL)";
 
     private String CREATE_TIPOS =
             "CREATE TABLE tipos ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +

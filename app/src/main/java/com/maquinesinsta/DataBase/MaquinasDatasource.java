@@ -7,20 +7,27 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class MaquinasDatasource {
 
-    public static final String table_ARTICULOS = "articulos";
-    public static final String ARTICULOS_ID = "_id";
-    public static final String ARTICULOS_CODE = "code";
-    public static final String ARTICULOS_DESCRIPCION = "description";
-    public static final String ARTICULOS_PVP = "pvp";
-    public static final String ARTICULOS_ESTOC = "estoc";
+    public static final String table_MAQUINAS = "maquinas";
+    public static final String MAQUINAS_ID = "_id";
+    public static final String MAQUINAS_NOMBRE = "nombreCliente";
+    public static final String MAQUINAS_DIRECCION = "direccion";
+    public static final String MAQUINAS_CPOSTAL = "codigoPostal";
+    public static final String MAQUINAS_POBLACION = "poblacion";
+    public static final String MAQUINAS_TELEFONO= "telefono";
+    public static final String MAQUINAS_EMAIL = "email";
+    public static final String MAQUINAS_NUMSERIE = "numSerie";
+    public static final String MAQUINAS_ULTREVISION = "ultRevision";
+    public static final String MAQUINAS_ID_TIPOS = "tipos_id";
+    public static final String MAQUINAS_ID_ZONAS = "zonas_id";
 
-    public static final String table_MOVIMIENTOS = "historial";
-    public static final String MOVIMIENTOS_ID = "_id";
-    public static final String MOVIMIENTOS_CODE = "code";
-    public static final String MOVIMIENTOS_FECHA = "fecha";
-    public static final String MOVIMIENTOS_CANTIDAD = "cantidad";
-    public static final String MOVIMIENTOS_TIPO = "tipo";
-    public static final String MOVIMIENTOS_ID_ARTICULOS = "articulo_ID";
+    public static final String table_ZONAS = "zonas";
+    public static final String ZONAS_ID = "_id";
+    public static final String ZONAS_NOMBRE = "nombre";
+    public static final String ZONAS_COLOR = "color";
+
+    public static final String table_TIPOS = "tipos";
+    public static final String TIPOS_ID = "_id";
+    public static final String TIPOS_CODE = "code";
 
     private MaquinasHelper dbHelper;
     private static SQLiteDatabase dbW, dbR;
