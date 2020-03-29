@@ -19,9 +19,8 @@
 
     <fragment
         android:id="@+id/navigation_zonas"
-        android:name="com.maquinesinsta.ui.Zonas.ZonasFragment"
-        android:label="@string/title_zonas"
-        tools:layout="@layout/fragment_zonas" />
+        android:name="com.maquinesinsta.ui.TiposMaquinas.ZonasFragment"
+        android:label="@string/title_zonas" />
     <fragment
         android:id="@+id/navigation_maps"
         android:name="com.maquinesinsta.ui.library.Maps.MapsFragment"

@@ -23,11 +23,11 @@ public class MaquinasDatasource {
     public static final String table_ZONAS = "zonas";
     public static final String ZONAS_ID = "_id";
     public static final String ZONAS_NOMBRE = "nombre";
-    public static final String ZONAS_COLOR = "color";
 
     public static final String table_TIPOS = "tipos";
     public static final String TIPOS_ID = "_id";
-    public static final String TIPOS_CODE = "code";
+    public static final String TIPOS_NOMBRE = "nombre";
+    public static final String TIPOS_COLOR = "color";
 
     private MaquinasHelper dbHelper;
     private static SQLiteDatabase dbW, dbR;
@@ -55,28 +55,121 @@ public class MaquinasDatasource {
 
     // Funcions que retornen cursors de articulos
 
-    public Cursor gArticulos() {
-        // Retorem totes les tasques
-        return dbR.query(table_ARTICULOS, new String[]{ARTICULOS_ID,ARTICULOS_CODE,ARTICULOS_DESCRIPCION,ARTICULOS_PVP,ARTICULOS_ESTOC},
+//-----------------------------------------> SHOW <-----------------------------------------\\
+
+    // Taula Tipos
+    public Cursor returnAllTipos() {
+        // Retorem tots el tipus de maquines
+        return dbR.query(table_TIPOS, new String[]{TIPOS_ID,TIPOS_NOMBRE,TIPOS_COLOR},
                 null, null,
-                null, null, ARTICULOS_ID);
+                null, null, TIPOS_ID);
     }
 
-    public Cursor gMovimientos(long id) {
-        // Retorem totes les tasques
+    // Taula Zonas
+    public Cursor returnAllZonas() {
+        // Retorem totes les zones
+        return dbR.query(table_ZONAS, new String[]{ZONAS_ID,ZONAS_NOMBRE},
+                null, null,
+                null, null, ZONAS_ID);
+    }
+
+//------------------------------------------------------------------------------------------\\
+//-----------------------------------------> ADD <-----------------------------------------\\
+
+    // Taula Tipos
+    public long addTipo(String nombre, String color) {
+        // Creem un nou tipos i retornem el id crear per si el necessiten
+        ContentValues values = new ContentValues();
+        values.put(TIPOS_NOMBRE, nombre);
+        values.put(TIPOS_COLOR, color);
+
+        return dbW.insert(table_TIPOS,null,values);
+    }
+
+    // Taula Zonas
+    public long addZona(String nombre) {
+        // Creem un nou tipos i retornem el id crear per si el necessiten
+        ContentValues values = new ContentValues();
+        values.put(ZONAS_NOMBRE, nombre);
+
+        return dbW.insert(table_ZONAS,null,values);
+    }
+
+//-----------------------------------------------------------------------------------------\\
+//-----------------------------------------> UPDATE <-----------------------------------------\\
+
+    // Taula Tipos
+    public void updateTipo(long id, String nombre, String color) {
+        // Modifiquem els valors de tipos amb clau primària "id"
+        ContentValues values = new ContentValues();
+        values.put(TIPOS_NOMBRE, nombre);
+        values.put(TIPOS_COLOR, color);
+
+        dbW.update(table_TIPOS,values, TIPOS_ID + " = ?", new String[] { String.valueOf(id) });
+    }
+
+    // Taula Zonas
+    public void updateZona(long id, String nombre) {
+        // Modifiquem els valors de zonas amb clau primària "id"
+        ContentValues values = new ContentValues();
+        values.put(ZONAS_NOMBRE, nombre);
+
+        dbW.update(table_ZONAS,values, ZONAS_ID + " = ?", new String[] { String.valueOf(id) });
+    }
+
+//---------------------------------------------------------------------------------------------\\
+//-----------------------------------------> DELETE <-----------------------------------------\\
+////////////////////////////////////falta controlar que no borri si existeix algun maquina amb aquests////////////////////////////////////
+    // Taula Tipos
+    public void deleteTipo(long id) {
+        // Eliminem la task amb clau primària "id"
+        dbW.delete(table_TIPOS,TIPOS_ID + " = ?", new String[] { String.valueOf(id) });
+    }
+
+    // Taula Zonas
+    public void deleteZona(long id) {
+        // Eliminem la task amb clau primària "id"
+        dbW.delete(table_ZONAS,ZONAS_ID + " = ?", new String[] { String.valueOf(id) });
+    }
+
+//---------------------------------------------------------------------------------------------\\
+//-----------------------------------------> LOAD A ROW <-----------------------------------------\\
+
+// Taula Tipos
+    public static Cursor oneRowTipo(long id) {
+        // Retorna un cursor només amb el id indicat
+        return dbR.query(table_TIPOS, new String[]{TIPOS_ID,TIPOS_NOMBRE,TIPOS_COLOR},
+                TIPOS_ID+ "=?", new String[]{String.valueOf(id)},
+                null, null, null);
+
+    }
+
+    // Taula Zonas
+    public static Cursor oneRowZona(long id) {
+        // Retorna un cursor només amb el id indicat
+        return dbR.query(table_ZONAS, new String[]{ZONAS_ID,ZONAS_NOMBRE},
+                ZONAS_ID+ "=?", new String[]{String.valueOf(id)},
+                null, null, null);
+
+    }
+
+//------------------------------------------------------------------------------------------------\\
+
+    /*public Cursor gMovimientos(long id) {
+        // Retorem totes les zones
         return dbR.query(table_MOVIMIENTOS, new String[]{MOVIMIENTOS_ID,MOVIMIENTOS_CODE,MOVIMIENTOS_FECHA,MOVIMIENTOS_CANTIDAD,MOVIMIENTOS_TIPO, MOVIMIENTOS_ID_ARTICULOS},
                 MOVIMIENTOS_ID_ARTICULOS + "=?", new String[]{String.valueOf(id)},
                 null, null, MOVIMIENTOS_ID);
-    }
-
-    public Cursor gMovimientosDate(long id, String initDate, String finDate) {
+    }*/
+//cerca per data
+    /*public Cursor gMovimientosDate(long id, String initDate, String finDate) {
         // Filtrem per data
         return dbR.rawQuery("select * from " + table_MOVIMIENTOS +
                 " where fecha BETWEEN '" + initDate + "' AND '" + finDate + "' AND articulo_ID = " + id + " " +
                 "ORDER BY fecha DESC ", null);
-    }
-
-    public Cursor gMovimientosToday(String today) {
+    }*/
+//cerca per data (today)
+    /*public Cursor gMovimientosToday(String today) {
         // Filtrem nomes les d'avui
         String ConstToday = "SELECT * FROM " + table_MOVIMIENTOS + " INNER JOIN " + table_ARTICULOS +
                 " ON " + table_MOVIMIENTOS + "." + MOVIMIENTOS_ID_ARTICULOS + "=" + table_ARTICULOS + "." + ARTICULOS_ID +
@@ -86,9 +179,9 @@ public class MaquinasDatasource {
         Cursor CursorToday = dbR.rawQuery(ConstToday, new String[]{String.valueOf(today)});
 
         return CursorToday;
-    }
-
-    public Cursor gArticulosPending() {
+    }*/
+//retorna pending/completed
+    /*public Cursor gArticulosPending() {
         // Retornem les tasques que el camp ESTOC <= 0
         return dbR.query(table_ARTICULOS, new String[]{ARTICULOS_ID,ARTICULOS_CODE,ARTICULOS_DESCRIPCION,ARTICULOS_PVP,ARTICULOS_ESTOC},
                 ARTICULOS_ESTOC + "<=" + 0, null,
@@ -100,29 +193,29 @@ public class MaquinasDatasource {
         return dbR.query(table_ARTICULOS, new String[]{ARTICULOS_ID,ARTICULOS_CODE,ARTICULOS_DESCRIPCION,ARTICULOS_PVP,ARTICULOS_ESTOC},
                 ARTICULOS_ESTOC + ">" + 0, null,
                 null, null, ARTICULOS_ID);
-    }
-
-    public static Cursor task(long id) {
+    }*/
+// retorna 1 sola tasca
+    /*public static Cursor task(long id) {
         // Retorna un cursor només amb el id indicat
         // Retornem les tasques que el camp ESTOC = 1
         return dbR.query(table_ARTICULOS, new String[]{ARTICULOS_ID,ARTICULOS_CODE,ARTICULOS_DESCRIPCION,ARTICULOS_PVP,ARTICULOS_ESTOC},
                 ARTICULOS_ID+ "=?", new String[]{String.valueOf(id)},
                 null, null, null);
 
-    }
-
-    public Cursor itemCode(String itemCode) {
+    }*/
+// retorns un sol itme
+    /*public Cursor itemCode(String itemCode) {
         return dbR.query(table_ARTICULOS, new String[]{ARTICULOS_ID,ARTICULOS_CODE,ARTICULOS_DESCRIPCION,ARTICULOS_PVP,ARTICULOS_ESTOC},
                 ARTICULOS_CODE+ "=?", new String[]{String.valueOf(itemCode)},
                 null, null, null);
 
-    }
+    }*/
 
     // ******************
     // Funciones de manipualación de datos
     // ******************
-
-    public long taskAdd(String code, String description, float pvp, int estoc) {
+//add
+    /*public long taskAdd(String code, String description, float pvp, int estoc) {
         // Creem una nova tasca i retornem el id crear per si el necessiten
         ContentValues values = new ContentValues();
         values.put(ARTICULOS_CODE, code);
@@ -143,9 +236,9 @@ public class MaquinasDatasource {
         values.put(MOVIMIENTOS_ID_ARTICULOS,id_articulo);
 
         return dbW.insert(table_MOVIMIENTOS,null,values);
-    }
-
-    public void taskUpdate(long id, String code, String description, float pvp, int estoc) {
+    }*/
+//Update
+    /*public void taskUpdate(long id, String code, String description, float pvp, int estoc) {
         // Modifiquem els valors de las tasca amb clau primària "id"
         ContentValues values = new ContentValues();
         values.put(ARTICULOS_CODE, code);
@@ -154,14 +247,14 @@ public class MaquinasDatasource {
         values.put(ARTICULOS_ESTOC,estoc);
 
         dbW.update(table_ARTICULOS,values, ARTICULOS_ID + " = ?", new String[] { String.valueOf(id) });
-    }
-
-    public void taskDelete(long id) {
+    }*/
+//delete
+    /*public void taskDelete(long id) {
         // Eliminem la task amb clau primària "id"
         dbW.delete(table_ARTICULOS,ARTICULOS_ID + " = ?", new String[] { String.valueOf(id) });
-    }
-
-    public void taskPending(long id, int estoc) {
+    }*/
+//gestio de filtes pendent/completat
+    /*public void taskPending(long id, int estoc) {
         // Modifiquem al estat de pendent la task indicada
         ContentValues values = new ContentValues();
         values.put(ARTICULOS_ESTOC,estoc);
@@ -175,6 +268,6 @@ public class MaquinasDatasource {
         values.put(ARTICULOS_ESTOC,estoc);
 
         dbW.update(table_ARTICULOS,values, ARTICULOS_ID + " = ?", new String[] { String.valueOf(id) });
-    }
+    }*/
 
 }

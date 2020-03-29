@@ -21,21 +21,23 @@ public class MaquinasHelper extends SQLiteOpenHelper{
                     "direccion TEXT NOT NULL," +
                     "codigoPostal TEXT NOT NULL," +
                     "poblacion TEXT NOT NULL," +
-                    "telefono FLOAT," +
-                    "email FLOAT," +
-                    "numSerie FLOAT NOT NULL," +
-                    "ultRevision FLOAT," +
+                    "telefono TEXT," +
+                    "email TEXT," +
+                    "numSerie TEXT NOT NULL," +
+                    "ultRevision TEXT," +
+                    "tipos_id INTEGER," +
+                    "zonas_id INTEGER," +
                     "FOREIGN KEY(tipos_id) REFERENCES tipos(_id) ON DELETE CASCADE," +
                     "FOREIGN KEY(zonas_id) REFERENCES zonas(_id) ON DELETE CASCADE)";
 
     private String CREATE_ZONAS =
             "CREATE TABLE zonas ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "nombre TEXT NOT NULL," +
-                    "color TEXT NOT NULL)";
+                    "nombre TEXT NOT NULL)";
 
     private String CREATE_TIPOS =
             "CREATE TABLE tipos ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "nombre TEXT NOT NULL)";
+                    "nombre TEXT NOT NULL," +
+                    "color TEXT NOT NULL)";
 
 
     @Override

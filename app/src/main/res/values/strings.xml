@@ -4,4 +4,14 @@
     <string name="title_tmaquinas">Tipos Máquinas</string>
     <string name="title_zonas">Zonas</string>
     <string name="title_maps">Maps</string>
+    <string name="button_add_tipos">Añadir nuevo Tipo de Máquina</string>
+    <string name="button_add_zonas">Añadir nueva Zona</string>
+    <string name="nombre">Nombre:</string>
+    <string name="color">Color:</string>
+    <string name="nombre_add_update">Nombre *</string>
+    <string name="color_add_update">Color *</string>
+    <string name="button_cancel">CANCELAR</string>
+    <string name="button_save">GUARDAR</string>
+    <string name="button_delete">ELIMINAR</string>
+    <string name="mandatory">* Obligatorio</string>
 </resources>
